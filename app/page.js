@@ -36,7 +36,7 @@ export default async function Home() {
                 <div className="col-md-5">
                   <div className="home-banner-photo">
                     {homeAcf.home_banner_photo &&
-                      <Image className="att_photo" src={homeAcf.home_banner_photo?.url} alt={homeAcf.home_banner_photo?.alt} width={434} height={557} title={homeAcf.home_banner_photo?.title}  />
+                      <Image className="att_photo" src={homeAcf.home_banner_photo?.url} alt={homeAcf.home_banner_photo?.alt} width={434} height={557} title={homeAcf.home_banner_photo?.title} priority={true} />
                     }
                     {homeAcf.home_banner_photo_name &&
                       <div className="home-banner-photo-name" dangerouslySetInnerHTML={{ __html: homeAcf.home_banner_photo_name }} />
