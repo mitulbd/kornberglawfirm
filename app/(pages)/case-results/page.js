@@ -49,7 +49,7 @@ export default async function Contact() {
         </div>
         {resultAcf.result_page_bg_image &&
           <div className="result-page-bg">
-            <Image src={resultAcf.result_page_bg_image?.url} alt={resultAcf.result_page_bg_image?.alt} width={resultAcf.result_page_bg_image?.width} height={resultAcf.result_page_bg_image?.height} loading="eager" />
+            <Image src={resultAcf.result_page_bg_image?.url} alt={resultAcf.result_page_bg_image?.alt} width={resultAcf.result_page_bg_image?.width} height={resultAcf.result_page_bg_image?.height} priority={true} />
           </div>
         }
       </section>

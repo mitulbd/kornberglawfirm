@@ -105,7 +105,7 @@ export default async function PracticeAreas() {
           </div>
         </div>
         <div className="practice-area-page-bg">
-          <Image src={practiceAreaBg} alt="practice area page bg" width={practiceAreaBg?.width} height={practiceAreaBg?.height} loading="eager" />
+          <Image src={practiceAreaBg} alt="practice area page bg" width={practiceAreaBg?.width} height={practiceAreaBg?.height} priority={true} />
         </div>
       </section>
       <ScrollToActive />

@@ -28,7 +28,7 @@ export default async function SinglePractice({ params }) {
     <>
       <section className="single-practice-area-page-sec">
         <div className="practice-area-page-bg">
-          <Image src={singlePracticeBg} alt="Background Image" title={singlePracticeBg?.title} width={singlePracticeBg?.width} height={singlePracticeBg?.height} loading="eager"/>
+          <Image src={singlePracticeBg} alt="Background Image" title={singlePracticeBg?.title} width={singlePracticeBg?.width} height={singlePracticeBg?.height} priority={true}/>
         </div>
         <div className="container">
 
@@ -44,7 +44,7 @@ export default async function SinglePractice({ params }) {
           <div className="row">
             <div className="col-md-9 single-content">
               <div className="single-feature-img">
-                {featuredMedia ? <Image src={featuredMedia?.url} alt={thisPost.title?.rendered} title={thisPost.title?.rendered} width={featuredMedia?.width} height={featuredMedia?.height} loading="eager" /> : <Image src={singleFeatured?.url} alt={thisPost.title?.rendered} title={thisPost.title?.rendered} width={singleFeatured?.width} height={singleFeatured?.height} loading="eager" />}
+                {featuredMedia ? <Image src={featuredMedia?.url} alt={thisPost.title?.rendered} title={thisPost.title?.rendered} width={featuredMedia?.width} height={featuredMedia?.height} priority={true} /> : <Image src={singleFeatured?.url} alt={thisPost.title?.rendered} title={thisPost.title?.rendered} width={singleFeatured?.width} height={singleFeatured?.height} priority={true} />}
               </div>
               {thisPost.content?.rendered && <div dangerouslySetInnerHTML={{ __html: thisPost.content?.rendered }} />}
               {thisPostAcf?.content2 && <div dangerouslySetInnerHTML={{ __html: thisPostAcf?.content2 }} />}
