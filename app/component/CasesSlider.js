@@ -31,7 +31,6 @@ export default function CaseSlider() {
       const swiperEl = swiperContainerRef.current;
       if (swiperEl) {
         Object.assign(swiperEl, {
-          slidesPerView:6,
           spaceBetween:20,
           loop:true,
           breakpoints:{

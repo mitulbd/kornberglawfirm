@@ -98,8 +98,10 @@ export default function ContactForm() {
                 </span>
               </div>
               <div className="col-md-6">
-                <textarea className="form-control wpcf7-textarea" id="message" name="message" placeholder="Message*" onChange={handleTextareaChange} required></textarea>
-                {data?.invalid_fields?.find((field) => field.field === "f-message")?.message && (<span className="wpcf7-not-valid-tip">{data.invalid_fields.find((field) => field.field === "f-message").message}</span>)}
+                <span className="wpcf7-form-control-wrap">
+                  <textarea className="form-control wpcf7-textarea" id="message" name="message" placeholder="Message*" onChange={handleTextareaChange} rows="5" required></textarea>
+                  {data?.invalid_fields?.find((field) => field.field === "f-message")?.message && (<span className="wpcf7-not-valid-tip">{data.invalid_fields.find((field) => field.field === "f-message").message}</span>)}
+                </span>
               </div>
             </div>
             <span className="form-quiz"><span className="wpcf7-form-control-wrap">

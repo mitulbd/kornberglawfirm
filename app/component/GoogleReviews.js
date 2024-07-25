@@ -33,8 +33,7 @@ export default function Reviews() {
     if (testimonials.length > 0) {
       const swiperEl = swiperContainerRef.current;
       if (swiperEl) {
-        Object.assign(swiperEl, {
-          slidesPerView:4,
+        Object.assign(swiperEl, {        
           spaceBetween:8,
           loop:true,
           navigation:{

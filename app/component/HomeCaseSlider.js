@@ -31,7 +31,6 @@ export default function HomeBottomResult() {
       const swiperEl = swiperContainerRef.current;
       if (swiperEl) {
         Object.assign(swiperEl, {
-          slidesPerView: 3,
           spaceBetween: 24,
           loop: true,
           navigation: { nextEl: ".la-button-next", prevEl: ".la-button-prev", },
