@@ -9,6 +9,8 @@ import ContactFrom from "@/app/component/ContactForm";
 import iconCall from "@/app/assets/images/icon-call.svg";
 import { usePathname } from 'next/navigation';
 import DownloadPwa from '../utils/DownloadButton';
+import { GoogleMapsEmbed } from '@next/third-parties/google'
+
 
 const Footer = () => {
   const [footermenu, setFooterMenu] = useState([]);
@@ -18,6 +20,7 @@ const Footer = () => {
   const date = new Date();
   const currentYear = date.getFullYear();
   const pathname = usePathname();
+  
 
   const handleScrollToContact = (e) => {
     e.preventDefault();
@@ -167,7 +170,7 @@ const Footer = () => {
                               {data.office_phone_number ? <div><a href={`tel:${data.office_phone_number}`}>{data.office_phone_number}</a></div> : <div><a>By Appointment Only</a></div>}
                             </div>
                           </div>
-                          <div className="col-sm-6" dangerouslySetInnerHTML={{ __html: data.office_map_iframe }} />
+                          <div className="col-sm-6"><div className="mapiframe"><GoogleMapsEmbed height={140} width="100%" src={data.office_map_iframe}/></div></div>
                         </div>
                       </div>
                     ))}

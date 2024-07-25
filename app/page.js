@@ -125,7 +125,7 @@ export default async function Home() {
           <div className="row justify-content-center">
             <div className="col-xxl-10">
               {homeAcf.ethical_image &&
-                <Image src={homeAcf.ethical_image?.url} alt={homeAcf.ethical_image?.alt} width={homeAcf.ethical_image?.width} height={homeAcf.ethical_image?.height} />
+                <Image src={homeAcf.ethical_image?.url} alt={homeAcf.ethical_image?.alt} width={1076} height={422} />
               }
             </div>
           </div>
