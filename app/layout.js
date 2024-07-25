@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en"  className={`${poppins.variable}`}>
       <body>
-        <Header/>
+        <Header priority={true}/>
         <main>
           {children}
         </main>

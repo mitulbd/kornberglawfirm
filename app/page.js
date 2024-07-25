@@ -36,7 +36,7 @@ export default async function Home() {
                 <div className="col-md-5">
                   <div className="home-banner-photo">
                     {homeAcf.home_banner_photo &&
-                      <Image className="att_photo" src={homeAcf.home_banner_photo?.url} alt={homeAcf.home_banner_photo?.alt} width={homeAcf.home_banner_photo?.width} height={homeAcf.home_banner_photo?.height} title={homeAcf.home_banner_photo?.title} priority={true} />
+                      <Image className="att_photo" src={homeAcf.home_banner_photo?.url} alt={homeAcf.home_banner_photo?.alt} width={434} height={557} title={homeAcf.home_banner_photo?.title} priority={true} />
                     }
                     {homeAcf.home_banner_photo_name &&
                       <div className="home-banner-photo-name" dangerouslySetInnerHTML={{ __html: homeAcf.home_banner_photo_name }} />
@@ -49,7 +49,7 @@ export default async function Home() {
         </div>
         {homeAcf.home_background_image &&
           <div className="home-banner-bg">
-            <Image src={homeAcf.home_background_image.url} width={homeAcf.home_background_image.width} height={homeAcf.home_background_image.height} alt={homeAcf.home_background_image.alt} priority={true} />
+            <Image src={homeAcf.home_background_image.url} width={1903} height={693} alt={homeAcf.home_background_image.alt} priority={true} />
           </div>
         }
       </section>
@@ -97,7 +97,7 @@ export default async function Home() {
                 {practiceFields?.map(data => (
                   <div key={data.id} className="col-sm-6 col-lg-4">
                     <div className="practice-area-block">
-                      {data.yoast_head_json.og_image ? <Image src={data.yoast_head_json.og_image?.[0].url} alt={data.title?.rendered} width={data.yoast_head_json.og_image?.[0].width} height={data.yoast_head_json.og_image?.[0].height} /> : <Image src={practiceAreaPleaceholder} alt="Practice Area" width={practiceAreaPleaceholder.width} height={practiceAreaPleaceholder.height} />}
+                      {data.yoast_head_json.og_image ? <Image src={data.yoast_head_json.og_image?.[0].url} alt={data.title?.rendered} width={345} height={330} /> : <Image src={practiceAreaPleaceholder} alt="Practice Area" width={practiceAreaPleaceholder.width} height= {practiceAreaPleaceholder.height} />}
                       <div className="practice-area-content">
                         <div className="practice-area-content-center">
                           <h6>{data.title?.rendered}</h6>
