@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27.571" height="27.571" viewBox="0 0 27.571 27.571">
+  <g id="Group_542" data-name="Group 542" transform="translate(-1642.061 -39.152)">
+    <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(1644.061 41.152)" fill="#ffb81c" stroke="#023b5c" stroke-width="2">
+      <circle cx="11.785" cy="11.785" r="11.785" stroke="none"/>
+      <circle cx="11.785" cy="11.785" r="12.785" fill="none"/>
+    </g>
+    <path id="Icon_material-local-phone" data-name="Icon material-local-phone" d="M7.041,9.968a10.633,10.633,0,0,0,4.626,4.626l1.544-1.544a.7.7,0,0,1,.716-.168,8.007,8.007,0,0,0,2.506.4.7.7,0,0,1,.7.7v2.45a.7.7,0,0,1-.7.7A11.931,11.931,0,0,1,4.5,5.2a.7.7,0,0,1,.7-.7H7.659a.7.7,0,0,1,.7.7,7.974,7.974,0,0,0,.4,2.506.7.7,0,0,1-.175.716Z" transform="translate(1644.877 42.263)" fill="#003b5c"/>
+  </g>
+</svg>

@@ -1,0 +1,366 @@
+@include media-breakpoint-down(xs) {
+  .container {
+    width:calc(100% - 22px);
+  }
+}
+body {
+  @include body-font;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:subpixel-antialiased;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  color:$body-color;
+  margin:0px;
+  padding:0px;
+  overflow-x:hidden;
+}
+
+main {
+  min-height:600px;
+}
+section {
+  padding:55px 0px;
+  @include media-breakpoint-down(xxl){
+    padding:38px 0px;
+  }
+  @include media-breakpoint-down(md){
+    padding:30px 0px;
+  }
+}
+img {
+  display:inline-block;
+  max-width:100%;
+  height:auto;
+}
+.btn{
+  font-size: 19px;
+  padding: 20px;
+  font-weight: 600;
+  border:none;
+  min-width:300px;
+  @include border-radius(6px);
+  @include media-breakpoint-down(xxl){
+    padding: 12px 15px;
+    min-width:auto;
+    line-height:1;
+  }
+  &.btn-primary{
+    background:linear-gradient(90deg, $primary-color 0%, #FF9F1C 100%);
+    color: #003B5C;
+    &:hover{
+      @include transition(0.4s);
+      background:linear-gradient(270deg, $primary-color 0%, #FF9F1C 100%);
+    }
+  }
+  &.btn-sm {
+    min-width: auto;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight:500;
+    @include border-radius(10px);
+  }
+}
+.svg {
+  pointer-events:none;
+}
+.div-img {
+  @include bg-cmn;
+}
+p{
+  margin-bottom:20px;
+}
+
+// Heading Style
+h1,
+.h1 {
+  @include font-xl;  
+}
+
+h2,
+.h2 {
+  @include font-lg; 
+}
+
+h3,
+.h3 {
+  @include font-md;
+}
+
+h4,
+.h4 {
+  @include font-sm;
+}
+
+h5,
+.h5 {
+  @include font-xs;
+}
+
+h6,
+.h6 {
+  @include font-xxs;
+}
+
+
+// Listing Style
+ul {
+  margin:0px 0px 18px;
+  padding:0;
+  li {
+    list-style:none;   
+    margin:0px 0px 18px 0px;
+    padding:0px 0px 0px 28px;
+    ul{
+      margin-top:20px;
+    }
+    @include media-breakpoint-down(lg){
+      margin-bottom:12px;
+    }
+    position:relative;
+    line-height:1.2;
+    &:before{
+      content:"";
+      background-image:url('../images/icon-list-arrow.svg');
+      position:absolute;
+      left:0px;
+      top:3px;
+      width: 12px;
+      height: 18px;
+      background-size: 12px;
+      background-repeat:no-repeat;
+    }
+  }
+  ol {
+    margin:8px 0px 0px;
+  }  
+ &.list-check{
+  li{
+    &::before{
+      background-image:url('../images/icon-check-arrow.svg');      
+      width:18px;
+      background-size:18px;
+    }
+  }
+ } 
+}
+.two-column-list{
+  column-count:2;
+}
+
+
+ul.list-unstyled {
+  li {
+    margin:0px 0px 13px 0px;
+    padding:0px;
+    position:relative;
+    line-height:1.65;
+    ul{
+      margin-top:0px;
+    }
+    &:before {
+      content:normal;
+    }
+  }
+}
+
+
+// Contact form Validation
+.wpcf7 form .wpcf7-response-output {
+  font-weight:600;
+  line-height:22px;
+  margin:16px 0px 0px;
+  padding:5px;
+  text-align:center;
+  background:$white-color;
+}
+.wpcf7-form-control-wrap {
+  display:block;
+  position:relative;
+  margin-bottom:10px;
+}
+div.wpcf7-validation-errors,
+div.wpcf7-acceptance-missing {
+  color:#a59b0e;
+}
+div.wpcf7-mail-sent-ng,
+div.wpcf7-aborted {
+  color:#ff0000;
+}
+div.wpcf7-mail-sent-ok {
+  color:#398f14;
+}
+
+span.wpcf7-not-valid-tip {
+  font-size:14px;
+  line-height:normal;
+  color:#ff0000;
+  text-transform:none;
+}
+.wpcf7-list-item{
+  margin-left:0px;
+}
+
+video {
+  max-width:100%;
+  vertical-align:middle;
+}
+
+// Default WP Style for alignments of img
+.alignnone {
+  margin:5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+  display:block;
+  margin:5px auto 5px auto;
+}
+.alignright {
+  float:right;
+  margin:5px 0 20px 20px;
+}
+.alignleft {
+  float:left;
+  margin:5px 20px 20px 0;
+}
+
+.breadcrumb{
+  color:$white-color;
+  font-size:14px;
+  position: relative;
+  z-index: 2;
+  .breadcrumb-item{
+    color:$white-color;
+    &::before{
+      font-size:22px;
+      line-height:1.2;
+    }
+    &.active{
+      color:$white-color;
+    }
+    a{
+      color:$white-color;
+      &:hover{
+        color:$primary-color;
+      }
+    }
+  }
+}
+
+.form-label {
+  margin-bottom:4px;
+}
+.form-control{
+  color:#061019;
+  @include media-breakpoint-down(lg){
+    padding: 12px 15px;
+  }
+  &:focus{
+    color:#061019;
+  }
+}
+
+.wpcf7-submit{
+  min-width:185px;
+}
+
+span.wpcf7-not-valid-tip + span.wpcf7-not-valid-tip {
+  display:none;
+}
+
+.grecaptcha-badge { 
+  visibility:hidden;
+}
+
+a[href^="tel:"] {  white-space: nowrap;}
+
+.single-content{
+  line-height:1.75;  
+  @include media-breakpoint-down(md){
+    margin-bottom:44px;
+  }
+  h2, h3{
+    @include fluid-type($min_width, $max_width, 24px, 31px);
+    font-weight: bold;
+    strong{
+      font-weight: bold;
+    }
+  }
+  a{
+    color:$primary-color;
+    &:hover{
+      text-decoration: none;
+      color:$body-color;
+    }
+  }
+  .line-title{
+    display:flex;
+    align-items:center;
+    span{
+      padding:0px 15px;
+      flex-shrink:0;
+    }
+    &::before, &::after{
+      content:'';
+      height:1px;
+      background-color:#8CB8E8;
+      flex-grow:1;
+    }
+  }
+  li{
+    a{
+      color:$primary-color;
+      text-decoration: none;
+      &:hover{
+        color:$body-color;
+      }
+    }
+  }
+}
+
+.pagination {
+  display:table;
+  margin:20px auto 40px;
+  .nav-links{
+    a, span{
+      min-width:46px;
+      height:46px;
+      display:inline-block;
+      background:$secondary-color;
+      line-height:50px;
+      text-align:center;
+      color:$white-color;
+      padding:0px 8px;
+      margin:0px 3px 5px;
+      &.current, &:hover{
+        background-color:$primary-color;
+        cursor: pointer;
+      }
+      &.dots{
+        pointer-events:none;
+        @include opacity(.8);
+      }
+    }
+  }
+}
+.form-quiz{  
+  label {
+    display:flex;
+    border:1px solid $secondary-color;
+    align-items:center;
+    border-radius:13px;
+    background-color:$secondary-color;
+    .wpcf7-quiz-label {
+      padding:7px 12px;
+      white-space:nowrap;
+      color:$white-color;
+      &:before {
+        content:'What is ';
+      }
+    }
+  }
+  .form-control{
+    border-width:0px 0px 0px 1px;
+    border-radius:0px 12px 12px 0px;
+  }
+}

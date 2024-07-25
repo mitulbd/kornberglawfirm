@@ -1,0 +1,30 @@
+// Color Palette //
+$white-color:#ffffff;
+$black-color:#000000;
+$primary-color:#FFD100;
+$secondary-color:#005587;
+
+
+// Bootstrap color variable 
+$body-bg:$white-color !default;
+$body-color:#003B5C;
+
+$theme-colors:(
+  "primary":$primary-color,
+  "secondary":$secondary-color
+);
+
+// link color 
+$link-decoration:none !default;
+
+$form-label-font-size:18px;
+$input-padding-y:19px;
+$input-padding-x:22px;
+$input-border-radius:12px;
+$input-border-color:#707070!default;
+$input-placeholder-color:#061019!default;
+
+$breadcrumb-divider:quote(">");
+$breadcrumb-divider-color:$white-color;
+$breadcrumb-item-padding-x:5px;
+$accordion-border-color:#01558740;

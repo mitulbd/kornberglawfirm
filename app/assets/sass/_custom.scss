@@ -1,0 +1,135 @@
+:root {
+  scroll-behavior: unset;
+}
+// Font Family
+$font-body:'Poppins', sans-serif;
+ 
+// Fluid Fonts
+$min_width:375px; 
+$max_width:1400px;
+$max_font:21.2px;
+$min_font:18px;
+@mixin body-font {
+  font-family:$font-body;
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+  line-height:1.6;
+}
+
+// Font-size as h1-h6 headings
+//h1
+@mixin font-xl {  
+  @include fluid-type($min_width, $max_width, 28px, 60px);
+  font-weight:700;
+  line-height:1.25;
+}
+//h2
+@mixin font-lg {
+  @include fluid-type($min_width, $max_width, 22px, 52px);
+  font-weight: 700;
+  line-height:1.48;
+}
+//h3
+@mixin font-md {
+  @include fluid-type($min_width, $max_width, 28px, 44px);
+  font-weight: 700;
+  line-height: 1;
+}
+//h4
+@mixin font-sm {
+  @include fluid-type($min_width, $max_width, 18px, 24px);
+  font-weight:700;
+  line-height: 1.5;
+}
+//h5
+@mixin font-xs {
+  @include fluid-type($min_width, $max_width, 18px, 22px);
+  font-weight:bold;
+}
+//h6
+@mixin font-xxs {
+  font-size:18px;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius:$radius;
+  -moz-border-radius:$radius;
+  -o-border-radius:$radius;
+  border-radius:$radius;
+}
+
+@mixin opacity($opacity) {
+  -webkit-opacity:$opacity;
+  -moz-opacity:$opacity;
+  -o-opacity:$opacity;
+  -m-opacity:$opacity;
+  opacity:$opacity;
+}
+
+@mixin transition($seconds) {
+  -webkit-transition:all $seconds ease;
+  -moz-transition:all $seconds ease;
+  -ms-transition:all $seconds ease;
+  -o-transition:all $seconds ease;
+  transition:all $seconds ease;
+}
+
+@mixin trans-anim-none {
+  -webkit-transition:none;
+  -moz-transition:none;
+  -o-transition:none;
+  transition:none;
+}
+
+@mixin space-none {
+  margin:0;
+  padding:0;
+}
+
+@mixin app-none {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  -o-appearance:none;
+  -ms-appearance:none;
+  appearance:none;
+}
+
+@mixin point-none {
+  -webkit-pointer-events:none;
+  -moz-pointer-events:none;
+  -o-pointer-events:none;
+  -ms-pointer-events:none;
+  pointer-events:none;
+}
+
+// Background properties
+@mixin bg-cmn {
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+@mixin bg-parallax {
+  background-attachment:fixed;
+  @include bg-cmn;
+}
+
+@mixin rotate($degrees) {
+  -webkit-transform:rotate($degrees);
+  -moz-transform:rotate($degrees);
+  -ms-transform:rotate($degrees);
+  -o-transform:rotate($degrees);
+  transform:rotate($degrees);
+}
+
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder'){@content;}
+  @include optional-at-root(':-moz-placeholder') {@content;}
+  @include optional-at-root('::-moz-placeholder') {@content;}
+  @include optional-at-root(':-ms-input-placeholder') {@content;}
+}
