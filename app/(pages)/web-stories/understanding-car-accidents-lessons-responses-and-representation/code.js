@@ -55,7 +55,8 @@ const WebStoryCode = () => {
   }
 
   return (
-    <>
+    <>  
+     <style jsx>{`header, .offcanvas, .footer-attorney-sec, .testimonials-sec, footer, .footer-bottom, .free-consultation{display:none}`}</style>
       <Script src="https://cdn.ampproject.org/v0.js"></Script>
       <Script src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></Script>
       {storyContent ? (
