@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import Menu from './Menu';
 import Searchbar from './Searchbar';
 import iconPhone from '@/app/assets/images/icon-phone.svg';
-import replaceSvgImages from '../utils/ReplaceSvgImages';
+import useReplaceSvgImages from '../utils/ReplaceSvgImages';
 import useLocalUrls from '../utils/useLocalUrls';
 import useTelephoneLinks from '../utils/TelephoneLinks';
 import useMailtoLinks from '../utils/Mailtolinks';
@@ -45,7 +45,7 @@ export default function Header() {
     window.addEventListener('scroll', changeHeaderFixed);
   }, []);
   
-  replaceSvgImages();
+  useReplaceSvgImages();
   useLocalUrls();
   useTelephoneLinks();
   useMailtoLinks();
