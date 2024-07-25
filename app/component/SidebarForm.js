@@ -77,6 +77,13 @@ export default function SidebarForm() {
     event.target.value = input;
   };
 
+  const handleQuizChange = (event) => {
+    let input = event.target.value;
+    input = input.replace(/\D/g, ''); // Remove all non-digit characters
+    input = input.slice(0, 2); // Limit input to 10 digits
+    event.target.value = input;
+  };
+
   return (
     <>      
       <div className="wpcf7 no-js">
@@ -94,14 +101,13 @@ export default function SidebarForm() {
             <input className="form-control" placeholder="Email*" type="email" id="femail" name="femail" required />
             {data?.invalid_fields?.find((field) => field.field === "s-email")?.message && (<span className="wpcf7-not-valid-tip">{data.invalid_fields.find((field) => field.field === "s-email").message}</span>)}
           </span>
-
           <span className="wpcf7-form-control-wrap">
             <textarea className="form-control wpcf7-textarea" id="message" name="message" placeholder="Message*" onChange={handleTextareaChange} required></textarea>
             {data?.invalid_fields?.find((field) => field.field === "f-message")?.message && (<span className="wpcf7-not-valid-tip">{data.invalid_fields.find((field) => field.field === "f-message").message}</span>)}
           </span>
           <span className="form-quiz">
             <span className="wpcf7-form-control-wrap">
-              <label><span className="wpcf7-quiz-label" id="basic-addon1">{quizLabel}</span> <input size="40" className="wpcf7-quiz quiz form-control" id="quiz-math" type="text" name="quiz" required /></label>
+              <label><span className="wpcf7-quiz-label" id="basic-addon1">{quizLabel}</span> <input onChange={handleQuizChange} className="wpcf7-quiz quiz form-control" id="quiz-math" type="text" name="quiz" required/></label>
             </span>
           </span>
 

@@ -48,7 +48,9 @@ export default async function Home() {
           </div>
         </div>
         {homeAcf.home_background_image &&
-          <div className="home-banner-bg" style={{ backgroundImage: homeAcf.home_background_image }}></div>
+          <div className="home-banner-bg">
+            <Image src={homeAcf.home_background_image.url} width={homeAcf.home_background_image.width} height={homeAcf.home_background_image.height} alt={homeAcf.home_background_image.alt} priority={true} />
+          </div>
         }
       </section>
       <section className="home-top-review">

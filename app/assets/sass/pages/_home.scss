@@ -7,9 +7,9 @@
   }
   overflow:hidden;
   .home-banner-bg{
-    background-image:url('../../images/home-banner.webp');
+    /*background-image:url('../../images/home-banner.webp');
     background-size:cover;
-    background-position:center center;
+    background-position:center center;*/
     position:absolute;    
     z-index:0;
     @include opacity(0.89);
@@ -18,6 +18,11 @@
     mix-blend-mode:hard-light;
     top:0px;
     left:0px;
+    img{
+      object-fit:cover;
+      width:100%;
+      height:100%;
+    }
   }
   &::before{
     content:'';

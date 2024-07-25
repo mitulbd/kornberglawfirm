@@ -77,6 +77,13 @@ export default function ContactForm() {
     event.target.value = input;
   };
 
+  const handleQuizChange = (event) => {
+    let input = event.target.value;
+    input = input.replace(/\D/g, ''); // Remove all non-digit characters
+    input = input.slice(0, 2); // Limit input to 10 digits
+    event.target.value = input;
+  };
+
   return (
     <>
       <div id="contact-form">
@@ -106,7 +113,7 @@ export default function ContactForm() {
             </div>
             <span className="form-quiz"><span className="wpcf7-form-control-wrap">
               <label><span className="wpcf7-quiz-label" id="basic-addon1">{quizLabel}</span>
-              <input size="40" className="wpcf7-quiz quiz form-control" id="quiz-math" type="text" name="quiz" required /></label>
+              <input size="40" onChange={handleQuizChange} className="wpcf7-quiz quiz form-control" id="quiz-math" type="text" name="quiz" required /></label>
             </span></span>
             {data?.invalid_fields?.find((field) => field.field === "quiz-math")?.message && (<span className="wpcf7-not-valid-tip">{data.invalid_fields.find((field) => field.field === "quiz-math").message}</span>)}
             
