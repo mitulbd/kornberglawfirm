@@ -23,7 +23,6 @@ export default function ArticleCode() {
           fetch('https://kornberglawfirm.com/wp-json/wp/v2/pages/?slug=articles&_fields=title', {next:{revalidate:3600}}),
           fetch(`https://kornberglawfirm.com/wp-json/wp/v2/articles?per_page=${postsPerPage}&page=1`, {next:{revalidate:3600}}),
         ]);
-
         if (!pageRes.ok || !articlesRes.ok) {
           throw new Error('Network response was not ok');
         }
