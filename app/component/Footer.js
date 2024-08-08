@@ -1,16 +1,15 @@
 "use client"
 import React, { useEffect, useState } from 'react';
+import { GoogleMapsEmbed } from '@next/third-parties/google';
+import DownloadPwa from '../utils/DownloadButton';
+import { usePathname } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
-import iconLocation from "@/app/assets/images/icon-location.svg"
-import Reviews from "@/app/component/GoogleReviews";
+import iconLocation from "@/app/assets/images/icon-location.svg";
+import iconCall from "@/app/assets/images/icon-call.svg";
 import ToTopButton from "@/app/component/ToTopButton";
 import ContactFrom from "@/app/component/ContactForm";
-import iconCall from "@/app/assets/images/icon-call.svg";
-import { usePathname } from 'next/navigation';
-import DownloadPwa from '../utils/DownloadButton';
-import { GoogleMapsEmbed } from '@next/third-parties/google'
-
+import Reviews from "@/app/component/GoogleReviews";
 
 const Footer = () => {
   const [footermenu, setFooterMenu] = useState([]);
@@ -20,7 +19,6 @@ const Footer = () => {
   const date = new Date();
   const currentYear = date.getFullYear();
   const pathname = usePathname();
-  
 
   const handleScrollToContact = (e) => {
     e.preventDefault();
@@ -33,16 +31,9 @@ const Footer = () => {
 
   useEffect(() => {
     const fetchFooterMenu = () => {
-      fetch("https://kornberglawfirm.com/wp-json/wp/v2/footer-menu", { next: { revalidate: 3600 } })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Failed to fetch data');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          setFooterMenu(data);
-        })
+      fetch("https://kornberglawfirm.com/wp-json/wp/v2/menu/footer?_fields=ID,url,title", { next: { revalidate: 3600 } })
+        .then((response) => {return response.json();})
+        .then((data) => {setFooterMenu(data);})
         .catch((error) => {
           console.error('Error fetching data:', error);
         });

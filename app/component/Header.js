@@ -12,6 +12,7 @@ import useTelephoneLinks from '../utils/TelephoneLinks';
 import useMailtoLinks from '../utils/Mailtolinks';
 import useExternalLinks from '../utils/ExternalLinks';
 import useImageAttributes from '../utils/ImageAttributes';
+import useClickToForm from '../utils/ClickToForm';
 
 export default function Header() {
   const [headerFixed, setHeaderFixed] = useState(false);
@@ -51,6 +52,7 @@ export default function Header() {
   useMailtoLinks();
   useExternalLinks();  
   useImageAttributes();
+  useClickToForm();
 
   return (
     <>

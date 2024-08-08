@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -15,7 +15,7 @@ const Menu = ({ menuId }) => {
     const fetchData = async () => {
       try {
         const [menuRes, postsRes, practicesRes] = await Promise.all([
-          fetch('https://kornberglawfirm.com/wp-json/wp/v2/menu', {next:{revalidate:3600 }}),
+          fetch('https://kornberglawfirm.com/wp-json/wp/v2/menu/main-menu/?_fields=ID,menu_item_parent,url,title', {next:{revalidate:3600 }}),
           fetch('https://kornberglawfirm.com/wp-json/wp/v2/posts/?_fields=link&per_page=100', {next:{revalidate:3600 }}),
           fetch('https://kornberglawfirm.com/wp-json/wp/v2/practice-area/?_fields=link&per_page=100', {next:{revalidate:3600 }}),
         ]);

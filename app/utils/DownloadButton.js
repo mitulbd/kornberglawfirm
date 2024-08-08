@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie'; // Import js-cookie for handling cookies
 import Image from 'next/image';

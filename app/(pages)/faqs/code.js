@@ -30,10 +30,9 @@ export default function FaqsCode() {
     return <Loading />;
   }
 
-  return <EndorsementPage faqsAcf={faqsAcf} />;
-  
+  return <FaqComp faqsAcf={faqsAcf} />;  
 
-  function EndorsementPage({ faqsAcf }) {
+  function FaqComp({ faqsAcf }) {
     const [visiblePosts, setVisiblePosts] = useState(3);
     const loadMorePosts = () => {
       setVisiblePosts(prevVisiblePosts => prevVisiblePosts + 2);
