@@ -1,4 +1,3 @@
-// components/MenuClient.js
 "use client";
 
 import { useEffect } from 'react';
@@ -92,7 +91,6 @@ const MenuClient = ({ menuId, menuItems, posts, practices }) => {
       </ul>
     );
   };
-
   return <>{renderMenu(createMenuHierarchy(menuItems))}</>;
 };
 

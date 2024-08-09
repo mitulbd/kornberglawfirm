@@ -2,7 +2,6 @@ import Header from "@/app/component/Header";
 import Footer from "@/app/component/Footer";
 import { Poppins } from 'next/font/google';
 import '@/app/assets/sass/main.scss';
-import Script from "next/script";
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],

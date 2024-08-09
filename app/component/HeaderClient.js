@@ -1,6 +1,4 @@
-// app/components/HeaderClient.js
 "use client";
-
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import useReplaceSvgImages from '../utils/ReplaceSvgImages';
@@ -10,6 +8,8 @@ import useMailtoLinks from '../utils/Mailtolinks';
 import useExternalLinks from '../utils/ExternalLinks';
 import useImageAttributes from '../utils/ImageAttributes';
 import useClickToForm from '../utils/ClickToForm';
+import useRefreshPageLink from '../utils/useRefreshPageLink';
+
 
 export default function HeaderClient({ children }) {
   const [headerFixed, setHeaderFixed] = useState(false);
@@ -35,6 +35,7 @@ export default function HeaderClient({ children }) {
   useExternalLinks();  
   useImageAttributes();
   useClickToForm();
+  useRefreshPageLink();
 
   return (
     <>

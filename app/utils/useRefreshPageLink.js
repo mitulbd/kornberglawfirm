@@ -1,16 +1,27 @@
-import { useCallback } from 'react';
+"use client";
+
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const useRefreshPageLink = () => {
-  return useCallback((href) => {
-    return (e) => {
-      e.preventDefault();
-      if (href) {
-        window.location.href = href;
-      } else {
-        console.error('No href provided to RefreshPageLink');
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleAnchorClick = (event) => {
+      const anchor = event.target.closest('a');
+      if (anchor && anchor.getAttribute('href')) {
+        const href = anchor.getAttribute('href');
+        if (href.startsWith('/') || href.startsWith(window.location.origin)) {
+          event.preventDefault();
+          router.push(href);
+        }
       }
     };
-  }, []);
+    document.addEventListener('click', handleAnchorClick);
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+    };
+  }, [router]);
 };
 
 export default useRefreshPageLink;

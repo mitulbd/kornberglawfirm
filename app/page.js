@@ -49,7 +49,7 @@ export default async function Home() {
         </div>
         {homeAcf.home_background_image &&
           <div className="home-banner-bg">
-            <Image src={homeAcf.home_background_image.url} width={1903} height={693} alt={homeAcf.home_background_image.alt} loading="eager" />
+            <Image src={homeAcf.home_background_image.url} width={1903} height={693} alt={homeAcf.home_background_image.alt} loading="eager" priority={true} />
           </div>
         }
       </section>

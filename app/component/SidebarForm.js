@@ -80,7 +80,7 @@ export default function SidebarForm() {
   const handleQuizChange = (event) => {
     let input = event.target.value;
     input = input.replace(/\D/g, ''); // Remove all non-digit characters
-    input = input.slice(0, 2); // Limit input to 10 digits
+    input = input.slice(0, 2); // Limit input to 2 digits
     event.target.value = input;
   };
 

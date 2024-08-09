@@ -14,7 +14,6 @@ const useLocalUrls = () => {
     updateUrls();
     const observer = new MutationObserver(updateUrls);
     observer.observe(document.body, { childList: true, subtree: true });
-
     return () => observer.disconnect();
   }, []);
 };

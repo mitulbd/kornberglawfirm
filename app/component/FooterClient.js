@@ -11,10 +11,8 @@ import iconLocation from '@/app/assets/images/icon-location.svg';
 import iconCall from '@/app/assets/images/icon-call.svg';
 
 const FooterClient = ({ options, footermenu }) => {
-  const pathname = usePathname();
-  
+  const pathname = usePathname();  
   const currentYear = new Date().getFullYear();
-
   const handleScrollToContact = (e) => {
     e.preventDefault();
     const targetElement = document.getElementById('footer-form');

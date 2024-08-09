@@ -1,5 +1,3 @@
-// components/MenuServer.js
-
 import MenuClient from './MenuClient';
 
 export default async function MenuServer({ menuId }) {
@@ -15,6 +13,5 @@ export default async function MenuServer({ menuId }) {
   const postsData = await postsRes.json();
   const practicesData = await practicesRes.json();
 
-  // Pass the data to the client component as props
   return <MenuClient menuId={menuId} menuItems={menuData} posts={postsData} practices={practicesData} />;
 }

@@ -1,4 +1,3 @@
-// app/components/HeaderServer.js
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,7 +13,6 @@ async function fetchOptions() {
 
 export default async function HeaderServer() {
   const options = await fetchOptions();
-
   return (
     <>
       <nav className="navbar navbar-expand-lg">

@@ -23,17 +23,4 @@ const ToTopButton = () => {
   );
 };
 
-const buttonStyle = {
-  position: 'fixed',
-  bottom: '20px',
-  right: '20px',
-  padding: '10px 20px',
-  fontSize: '16px',
-  backgroundColor: '#0070f3',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '5px',
-  cursor: 'pointer',
-};
-
 export default ToTopButton;
