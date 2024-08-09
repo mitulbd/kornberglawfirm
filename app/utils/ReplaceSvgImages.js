@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect } from 'react';
 
 const useReplaceSvgImages = () => {
@@ -21,7 +21,13 @@ const useReplaceSvgImages = () => {
             if (!svg.getAttribute("viewBox") && svg.getAttribute("height") && svg.getAttribute("width")) {
               svg.setAttribute("viewBox", `0 0 ${svg.getAttribute("width")} ${svg.getAttribute("height")}`);
             }
-            img.parentNode.replaceChild(svg, img);
+            if (img.parentNode) {
+              img.parentNode.replaceChild(svg, img);
+            } else {
+              console.warn("Image parent node is not found.");
+            }
+          } else {
+            console.warn("No SVG element found in the fetched data.");
           }
         })
         .catch(error => {

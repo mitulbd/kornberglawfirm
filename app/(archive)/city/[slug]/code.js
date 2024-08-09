@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
 import { useParams } from 'next/navigation';
 import Breadcrumbs from "@/app/component/Breadcrumbs";
@@ -6,68 +6,44 @@ import { replaceBaseUrl } from '@/app/utils/urlUtils';
 import Loading from "@/app/component/Loading";
 import Link from "next/link";
 
-export default function City() {
+export default function City({ initialPosts, initialTotalPages, initialCity }) {
   const params = useParams();
-  const [posts, setPosts] = useState();
-  const [currentCity, setCurrentCity] = useState(null);
+  const [posts, setPosts] = useState(initialPosts);
+  const [currentCity, setCurrentCity] = useState(initialCity);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(initialTotalPages);
   const [isLoadMoreLoading, setIsLoadMoreLoading] = useState(false);
   const perPage = 9;
   const loadMoreCount = 3;
 
-  const fetchCategories = async () => {
-    try {
-      const data = await fetch("https://kornberglawfirm.com/wp-json/wp/v2/city?_fields=id,name,slug&per_page=100", {next:{revalidate:3600 }}).then(res => res.json());
-      const thisCity = data.find(cat => cat.slug === params.slug);
-      setCurrentCity(thisCity);
-      if (thisCity) {
-        fetchPosts(thisCity.id, 1);
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
   const fetchPosts = async (cityId, page) => {
     try {
       setIsLoadMoreLoading(true);
       const postRes = await fetch(`https://kornberglawfirm.com/wp-json/wp/v2/practice-area?city=${cityId}&per_page=${perPage}&page=${page}&_fields=id,title,link,slug`);
-      if (!postRes.ok) {
-        throw new Error('Network response was not ok');
-      }
+      if (!postRes.ok) throw new Error('Network response was not ok');
       const postData = await postRes.json();
       const totalPages = postRes.headers.get('X-WP-TotalPages');
-      setPosts(postData);
+      setPosts(prevPost => [...prevPost, ...postData]);
       setTotalPages(Number(totalPages));
+      setCurrentPage(page);
     } catch (error) {
-      console.error('Failed to fetch initial data:', error);
+      console.error('Failed to fetch more posts:', error);
     } finally {
       setIsLoadMoreLoading(false);
     }
   };
-  const loadMorePosts = async () => {
+
+  const loadMorePosts = () => {
     if (currentPage < totalPages) {
-      const nextPage = currentPage + 1;
-      setIsLoadMoreLoading(true);
-      try {
-        const res = await fetch(`https://kornberglawfirm.com/wp-json/wp/v2/practice-area?city=${currentCity?.id}&per_page=${loadMoreCount}&page=${nextPage}&_fields=id,title,link,slug`);
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const newPost = await res.json();
-        setPosts(prevPost => [...prevPost, ...newPost]);
-        setCurrentPage(nextPage);
-      } catch (error) {
-        console.error('Failed to fetch more posts:', error);
-      } finally {
-        setIsLoadMoreLoading(false);
-      }
+      fetchPosts(currentCity?.id, currentPage + 1);
     }
   };
 
   useEffect(() => {
-    fetchCategories();
-  }, [params.slug]);
+    if (params.slug !== currentCity?.slug) {
+      // Logic to handle city change, re-fetch categories, and posts if needed
+    }
+  }, [params.slug, currentCity]);
 
   return (
     posts === undefined ? <Loading /> :

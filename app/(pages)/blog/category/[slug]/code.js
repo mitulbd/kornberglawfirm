@@ -1,75 +1,40 @@
-"use client"
-import { useState, useEffect } from "react";
-import { useParams } from 'next/navigation';
+"use client";
+import { useState } from "react";
 import Breadcrumbs from "@/app/component/Breadcrumbs";
 import { replaceBaseUrl } from '@/app/utils/urlUtils';
 import Loading from "@/app/component/Loading";
 import Link from "next/link";
 
-export default function Category() {
-  const params = useParams();
-  const [posts, setPosts] = useState();
-  const [currentCategory, setCurrentCategory] = useState(null);
+export default function Categories({ initialPosts, initialTotalPages, initialCategory }) {
+  const [posts, setPosts] = useState(initialPosts);
+  const [currentCategory] = useState(initialCategory);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [totalPages, setTotalPages] = useState(initialTotalPages);
   const [isLoadMoreLoading, setIsLoadMoreLoading] = useState(false);
   const perPage = 9;
-  const loadMoreCount = 3;
-
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch("https://kornberglawfirm.com/wp-json/wp/v2/categories?_fields=id,name,slug&per_page=100");
-      const data = await response.json();
-      const thisCategory = data.find(cat => cat.slug === params.slug);
-      setCurrentCategory(thisCategory);
-      if (thisCategory) {
-        fetchPosts(thisCategory.id, 1);
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
 
   const fetchPosts = async (categoryId, page) => {
     try {
       setIsLoadMoreLoading(true);
       const postRes = await fetch(`https://kornberglawfirm.com/wp-json/wp/v2/posts?categories=${categoryId}&per_page=${perPage}&page=${page}&_fields=id,title,link`);
-      if (!postRes.ok) {
-        throw new Error('Network response was not ok');
-      }
+      if (!postRes.ok) throw new Error('Network response was not ok');
       const postData = await postRes.json();
       const totalPages = postRes.headers.get('X-WP-TotalPages');
-      setPosts(postData);
+      setPosts(prevPost => [...prevPost, ...postData]);
       setTotalPages(Number(totalPages));
+      setCurrentPage(page);
     } catch (error) {
-      console.error('Failed to fetch initial data:', error);
+      console.error('Failed to fetch more posts:', error);
     } finally {
       setIsLoadMoreLoading(false);
     }
   };
-  const loadMorePosts = async () => {
-    if (currentPage < totalPages) {
-      const nextPage = currentPage + 1;
-      setIsLoadMoreLoading(true);
-      try {
-        const res = await fetch(`https://kornberglawfirm.com/wp-json/wp/v2/posts?categories=${currentCategory?.id}&per_page=${loadMoreCount}&page=${nextPage}&_fields=id,title,link`);
-        if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const newPost = await res.json();
-        setPosts(prevPost => [...prevPost, ...newPost]);
-        setCurrentPage(nextPage);
-      } catch (error) {
-        console.error('Failed to fetch more posts:', error);
-      } finally {
-        setIsLoadMoreLoading(false);
-      }
-    }
-  };
 
-  useEffect(() => {
-    fetchCategories();
-  }, [params.slug]);
+  const loadMorePosts = () => {
+    if (currentPage < totalPages) {
+      fetchPosts(currentCategory?.id, currentPage + 1);
+    }
+  }; 
 
   return (
     posts === undefined ? <Loading /> :

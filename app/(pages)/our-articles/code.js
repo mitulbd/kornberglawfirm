@@ -1,64 +1,33 @@
-"use client"
-import { useState, useEffect } from "react";
+"use client";
+import { useState } from "react";
 import Breadcrumbs from "@/app/component/Breadcrumbs";
 import Image from "next/image";
 import blogBg from "@/app/assets/images/blog-bg.png";
 import Loading from "@/app/component/Loading";
-import {replaceBaseUrl} from "@/app/utils/urlUtils";
+import { replaceBaseUrl } from "@/app/utils/urlUtils";
 
-export default function ArticleCode() {
-  const [articlePage, setArticlePage] = useState(null);
-  const [articles, setArticles] = useState([]);
+export default function ArticleCode({ articlePage, articles, totalPages }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loading, setLoading] = useState(true); // Loading state
-  const postsPerPage = 9;
-  const loadMoreCount = 3;
+  const [articlesList, setArticlesList] = useState(articles);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchInitialData = async () => {
-      setLoading(true); // Set loading to true when fetching starts
+  const loadMorePosts = async () => {
+    if (currentPage < totalPages) {
+      const nextPage = currentPage + 1;
+      setLoading(true);
       try {
-        const [pageRes, articlesRes] = await Promise.all([
-          fetch('https://kornberglawfirm.com/wp-json/wp/v2/pages/?slug=articles&_fields=title', {next:{revalidate:3600}}),
-          fetch(`https://kornberglawfirm.com/wp-json/wp/v2/articles?per_page=${postsPerPage}&page=1`, {next:{revalidate:3600}}),
-        ]);
-        if (!pageRes.ok || !articlesRes.ok) {
+        const res = await fetch(`https://kornberglawfirm.com/wp-json/wp/v2/articles?per_page=3&page=${nextPage}`);
+        if (!res.ok) {
           throw new Error('Network response was not ok');
         }
-
-        const articlePageData = await pageRes.json();
-        const articlesData = await articlesRes.json();
-        const totalPages = articlesRes.headers.get('X-WP-TotalPages');
-
-        setArticlePage(articlePageData[0]);
-        setArticles(articlesData);
-        setTotalPages(Number(totalPages));
+        const newArticles = await res.json();
+        setArticlesList(prevArticles => [...prevArticles, ...newArticles]);
+        setCurrentPage(nextPage);
       } catch (error) {
-        console.error('Failed to fetch initial data:', error);
+        console.error('Failed to fetch more posts:', error);
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchInitialData();
-  }, []);
-
-  const loadMorePosts = async () => {
-    const nextPage = currentPage + 1;
-    setLoading(true);
-    try {
-      const res = await fetch(`https://kornberglawfirm.com/wp-json/wp/v2/articles?per_page=${loadMoreCount}&page=${nextPage}`);
-      if (!res.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const newArticles = await res.json();
-      setArticles(prevArticles => [...prevArticles, ...newArticles]);
-      setCurrentPage(nextPage);
-    } catch (error) {
-      console.error('Failed to fetch more posts:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -71,16 +40,18 @@ export default function ArticleCode() {
             <div className="row justify-content-center">
               <div className="col-xl-10 blog-page">
                 <h1 className="post-page-title">{articlePage.title?.rendered}</h1>
-                {loading && <Loading/>}
-                {articles.length > 0 ? (
+                {loading && <Loading />}
+                {articlesList.length > 0 ? (
                   <>
                     <div className="blog-sec-title"><h4>Featured Posts</h4></div>
-                    <div className="row">                     
-                      {articles.map((data, index) => (
+                    <div className="row">
+                      {articlesList.map((data, index) => (
                         <div key={index} className="col-md-6 col-lg-4">
                           <div className="blog-list-block">
-                            <h5 dangerouslySetInnerHTML={{__html:data.title?.rendered}}/>
-                            <div><a href={replaceBaseUrl(data.link)} className="btn btn-primary btn-sm stretched-link">View Post</a></div>
+                            <h5 dangerouslySetInnerHTML={{ __html: data.title?.rendered }} />
+                            <div>
+                              <a href={replaceBaseUrl(data.link)} className="btn btn-primary btn-sm stretched-link">View Post</a>
+                            </div>
                           </div>
                         </div>
                       ))}

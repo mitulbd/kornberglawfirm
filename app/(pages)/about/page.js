@@ -32,7 +32,7 @@ export default async function About() {
                 }
                 <div className="col-md-4">
                   {aboutAcf.about_banner_bg_image &&
-                    <Image className="about-banner-img" src={aboutAcf.about_banner_bg_image?.url} alt={aboutAcf.about_banner_bg_image?.alt} width={aboutAcf.about_banner_bg_image?.width} height={aboutAcf.about_banner_bg_image?.height} priority={true} />
+                    <Image className="about-banner-img" src={aboutAcf.about_banner_bg_image?.url} alt={aboutAcf.about_banner_bg_image?.alt} width={aboutAcf.about_banner_bg_image?.width} height={aboutAcf.about_banner_bg_image?.height} loading="eager" />
                   }
                 </div>
               </div>
